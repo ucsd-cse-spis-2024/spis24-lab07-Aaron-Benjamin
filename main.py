@@ -28,6 +28,24 @@ def render_ctof_result():
     except ValueError:
         return "Sorry: something went wrong."
 
+@app.route('/ftoc')
+
+def render_ftoc():
+
+    return render_template('ftoc.html')
+
+@app.route('/ftoc_result')
+
+def render_ftoc_result():
+    try:
+        ftemp_result = float(request.args['ftemp'])
+        ctemp_result = ftoc(ftemp_result)
+        return render_template('ftoc_result.html',
+                              ftemp=ftemp_result, 
+                              ctemp=ctemp_result)
+    except ValueError:
+        return "Sorry: something went wrong."
+
 def ftoc(ftemp):
 
    return (ftemp - 32.0) * (5.0 / 9.0)
