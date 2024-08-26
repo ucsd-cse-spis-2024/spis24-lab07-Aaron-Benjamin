@@ -1,12 +1,13 @@
 from flask import Flask
 import random
+from flask import render_template
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 
-def hello():
-   return "Hello World!"
+def render_home():
+    return render_template('home.html')
 
 def ftoc(ftemp):
 
