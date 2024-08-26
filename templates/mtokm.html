@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}Convert ctof{% endblock %}
+
+{% block content %}
+
+<p>Enter a number of miles and click "submit" to convert to Kilometers</p>
+<form action="/mtokm_result">
+  <p>Miles: <input type="number" name="miles_str" value="20.0"></p>
+  <input type="submit" value="Submit">
+</form>
+
+
+
+{% endblock %}

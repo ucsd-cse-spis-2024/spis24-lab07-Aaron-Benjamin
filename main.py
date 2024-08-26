@@ -46,6 +46,25 @@ def render_ftoc_result():
     except ValueError:
         return "Sorry: something went wrong."
 
+@app.route('/mtokm')
+
+def render_miles():
+
+    return render_template('mtokm.html')
+
+@app.route('/mtokm_result')
+
+def render_mtokm_result():
+    try:
+        miles_result = float(request.args['miles_str'])
+        km_result = convert_miles(miles_result)
+        return render_template('mtokm_result.html',
+                              miles_str=miles_result, 
+                              km=km_result)
+    except ValueError:
+        return "Sorry: something went wrong."
+
+
 def ftoc(ftemp):
 
    return (ftemp - 32.0) * (5.0 / 9.0)
@@ -94,7 +113,7 @@ def convert_miles(miles_str):
     try:
         miles = float(miles_str)
         km = miles_to_km(miles)
-        return "In miles: " + miles_str + " In Kilometers: " + str(km)
+        return km
     except ValueError:
         return "Sorry.  Could not convert " + miles_str + " to a number"
 
