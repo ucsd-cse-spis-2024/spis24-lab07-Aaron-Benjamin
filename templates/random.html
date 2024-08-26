@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block title %}Random number list{% endblock %}
+{% block content %}
+<p>Enter a limit for a random number list</p>
+
+<form action="/random_result">
+    <p>Limit: <input type="int" name="rand_num" value=""> </p>
+    <input type="submit" value="Submit" >
+
+</form>
+{% endblock %}

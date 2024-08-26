@@ -5,6 +5,8 @@ from flask import request
 
 app = Flask(__name__)
 
+
+
 @app.route('/')
 
 def render_home():
@@ -64,6 +66,24 @@ def render_mtokm_result():
     except ValueError:
         return "Sorry: something went wrong."
 
+@app.route('/random')
+
+
+def render_random():
+
+    return render_template('random.html')
+
+@app.route('/random_result')
+
+def render_random_result():
+    try:
+        limit = float(request.args['rand_num'])
+        list1 = randNums(limit)
+        return render_template('random_result.html', 
+                           result = list1)
+    except ValueError:
+        return "Sorry: something went wrong"
+    
 
 def ftoc(ftemp):
 
@@ -124,6 +144,7 @@ def rand(randNum):
     return num1
 
 
+
 @app.route('/random/<rand_num>')
 
 
@@ -134,7 +155,6 @@ def randNums(rand_num):
         return  ", ".join(rand1)
     except ValueError:
         return "Sorry.  Could not convert " + rand_num + " to a number"
-
 
 
 if __name__ == "__main__":
