@@ -1,6 +1,7 @@
 from flask import Flask
 import random
 from flask import render_template
+from flask import request
 
 app = Flask(__name__)
 
@@ -8,6 +9,24 @@ app = Flask(__name__)
 
 def render_home():
     return render_template('home.html')
+
+@app.route('/ctof')
+
+def render_ctof():
+
+    return render_template('ctof.html')
+
+@app.route('/ctof_result')
+
+def render_ctof_result():
+    try:
+        ctemp_result = float(request.args['ctemp'])
+        ftemp_result = ctof(ctemp_result)
+        return render_template('ctof_result.html', 
+                               ctemp=ctemp_result, 
+                               ftemp=ftemp_result)
+    except ValueError:
+        return "Sorry: something went wrong."
 
 def ftoc(ftemp):
 
